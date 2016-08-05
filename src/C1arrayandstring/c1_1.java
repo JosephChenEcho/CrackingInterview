@@ -27,6 +27,16 @@ public class c1_1 {
         return true;
     }
     
+    public static boolean isUniqueChars2(String _input){
+        boolean[] char_set = new boolean[256];
+        for(int i = 0; i< _input.length(); i++){
+            int val = _input.charAt(i);
+            if (char_set[val]) return false;
+            char_set[val] = true;
+        }
+        return true;
+    }
+    
     //1_2
     public static String reversecstyle(String _input){
         StringBuilder sentence = new StringBuilder();
@@ -35,5 +45,12 @@ public class c1_1 {
         }
         
         return sentence.toString();
+    }
+    
+    //1_3
+    public static String removedup(String _input){
+        char[] input = _input.toCharArray();
+        
+        return null;
     }
 }
