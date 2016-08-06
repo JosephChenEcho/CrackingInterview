@@ -16,6 +16,11 @@ public class c1_1 {
         //System.out.println(StringUnique("abc"));
         //System.out.println("abc".indexOf("b",2));
         System.out.println(reversecstyle("abc"));
+        
+        String input = "     ";
+        String output = replacetwo(input);
+        System.out.println(output);
+        System.out.println(replace(input));
     }
     //1_1
     public static boolean StringUnique(String _input){
@@ -52,5 +57,37 @@ public class c1_1 {
         char[] input = _input.toCharArray();
         
         return null;
+    }
+    
+    //1_4
+    public static String replace(String _input){
+        return _input.replace(" ", "%20");
+    }
+    
+    public static String replacetwo(String _input){
+        char[] input = _input.toCharArray();
+        int fix = 0;
+        for(int i = 0;i < input.length; i++){
+            if(input[i] == ' '){
+                fix++;
+            }        
+        }
+        char[] output = new char[input.length + fix * 2];
+        //output = input.clone();
+
+        for(int i = output.length - 1; i >= 0; i--){
+            
+            if(input[i - fix*2] == ' '){
+                fix--;
+                output[i] = '0';
+                output[i-1] = '2';
+                output[i-2] = '%';
+                i -= 2;
+            }
+            else{
+                output[i] = input[i - fix*2];
+            }
+        }
+        return output.toString();
     }
 }
