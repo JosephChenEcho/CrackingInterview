@@ -15,12 +15,22 @@ public class c1_1 {
         //System.out.println("Helloworld");
         //System.out.println(StringUnique("abc"));
         //System.out.println("abc".indexOf("b",2));
-        System.out.println(reversecstyle("abc"));
+        //System.out.println(reversecstyle("abc"));
         
-        String input = "     ";
-        String output = replacetwo(input);
-        System.out.println(output);
-        System.out.println(replace(input));
+        //String input = "     ";
+        //String output = replacetwo(input);
+        //System.out.println(output);
+        //System.out.println(replace(input));
+        
+        int[][] input = new int[][]{
+            {1,2,3,4},
+            {5,6,7,8},
+            {9,10,11,12},
+            {13,14,15,16}
+        };
+        printmatrix(input);
+        rotate(input);
+        
     }
     //1_1
     public static boolean StringUnique(String _input){
@@ -89,5 +99,37 @@ public class c1_1 {
             }
         }
         return output.toString();
+    }
+    
+    //1_6
+    public static void rotate(int[][] _input){
+        int n = _input.length;
+        for(int i = 0; i <= (n-1)/2; i++){
+            for(int j = 0; j <= (n-1)/2; j++){
+                int top = _input[i][j];
+                
+                _input[i][j] = _input[n-j-1][i];
+                
+                _input[n-j-1][i] = _input[n-i-1][n-j-1];
+                
+                _input[n-i-1][n-j-1] = _input[j][n-i-1];
+                
+                _input[j][n-i-1] = top;
+                
+                System.out.println(i+" "+j +" "+n + " " + (n-1)/2);
+                printmatrix(_input);
+                
+            }
+        }
+    }
+    
+    public static void printmatrix(int[][] _input){
+        for(int[] i : _input){
+            for(int j : i){
+                System.out.print(j + "\t");
+            }
+            System.out.println();
+        }
+        System.out.println("_____________________");
     }
 }
