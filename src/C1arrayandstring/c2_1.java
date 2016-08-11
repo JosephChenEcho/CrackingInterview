@@ -110,6 +110,30 @@ public class c2_1 {
         return true;
     }
     
+    //2_4
+    public static Node addNode(Node a, Node b){
+        
+        Node returnnode = new Node(0);
+        boolean nextplus = false;
+        
+        while(a != null && b != null){
+            int nodedata = a.data + b.data;
+            if(nextplus) nodedata += 1;
+            
+            if(nodedata >= 10){
+                nextplus = true;
+                nodedata %= 10;
+            }
+            else{
+                nextplus = false;
+            }
+            Node n = new Node(nodedata);
+            returnnode.next = n;
+            
+        }
+        
+        return null;
+    }
     
     public static void printNode(Node n){
         Node current = n;// new Node(0);
