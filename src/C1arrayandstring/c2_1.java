@@ -20,18 +20,20 @@ public class c2_1 {
         Node input4 = new Node(3);
         Node input5 = new Node(7);
         Node input6 = new Node(6);
+        Node input7 = new Node(9);
         input.next = input1;
         input1.next = input2;
         input2.next = input3;
-        input3.next = input4;
+        //input3.next = input4;
         input4.next = input5;
         input5.next = input6;
+        input6.next = input7;
         //deleteDups(input);
         //printNode(removeMiddleNode(input));
         
         printNode(input);
-        deleteMiddle(input);
-        printNode(input);
+        printNode(input4);
+        printNode(addNode(input,input4));
         
     } 
     
@@ -114,6 +116,8 @@ public class c2_1 {
     public static Node addNode(Node a, Node b){
         
         Node returnnode = new Node(0);
+        returnnode.next = new Node(0);
+        Node current = returnnode.next;
         boolean nextplus = false;
         
         while(a != null && b != null){
@@ -127,12 +131,20 @@ public class c2_1 {
             else{
                 nextplus = false;
             }
-            Node n = new Node(nodedata);
-            returnnode.next = n;
-            
+            current.data = nodedata;
+            current.next = new Node(0);
+            current = current.next;    
+            a = a.next;
+            b = b.next;
+        }
+        if(nextplus){
+            current.data = 1;
+        }
+        else{
+            current = null;
         }
         
-        return null;
+        return returnnode.next;
     }
     
     public static void printNode(Node n){
@@ -140,9 +152,10 @@ public class c2_1 {
         //current.next = n;
         //current = current.next;
         while( current != null){
-            System.out.println(current.data);
+            System.out.print(current.data+"\t");
             current = current.next;
         }
+        System.out.println();
     }
 }
 
