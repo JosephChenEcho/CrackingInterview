@@ -16,15 +16,23 @@ public class c2_1 {
         Node input = new Node(1);
         Node input1 = new Node(2);
         Node input2 = new Node(5);
-        Node input3 = new Node(5);
+        Node input3 = new Node(4);
         Node input4 = new Node(3);
+        Node input5 = new Node(7);
+        Node input6 = new Node(6);
         input.next = input1;
         input1.next = input2;
         input2.next = input3;
         input3.next = input4;
+        input4.next = input5;
+        input5.next = input6;
+        //deleteDups(input);
+        //printNode(removeMiddleNode(input));
         
-        deleteDups(input);
         printNode(input);
+        deleteMiddle(input);
+        printNode(input);
+        
     } 
     
     public static void testNode(){
@@ -74,6 +82,34 @@ public class c2_1 {
         }
         return p1;
     }
+    
+    //2_3
+    
+    public static Node removeMiddleNode(Node _input){
+        if(_input == null) return _input;
+        Node p1 = _input;
+        Node p2 = _input;
+        int i = 0;
+        while(p1.next != null){
+            p1 = p1.next;
+            i++;
+        }
+        int j = (i+1)/2;
+        while(j > 1){
+            p2 = p2.next;
+            j--;
+        }
+        p2.next = p2.next.next;
+        return p2;
+    }
+    
+    public static boolean deleteMiddle(Node n){
+        Node next = n.next;
+        n.data = next.data;
+        n.next = next.next;
+        return true;
+    }
+    
     
     public static void printNode(Node n){
         Node current = n;// new Node(0);
