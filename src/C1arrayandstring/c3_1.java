@@ -21,17 +21,36 @@ public class c3_1 {
         s.push(1);
         s.push(6);
         s.push(7);
+        s.push(9);
+        s.push(8);
         
         while(!s.isEmpty()){
             System.out.print(s.pop() + "\t");
-        }             
+        }         
+        
+        s.push(4);
+        s.push(3);
+        s.push(2);
+        s.push(1);
+        s.push(6);
+        s.push(7);
+        s.push(9);
+        s.push(8);
+        
+        s.popAt(2);
+        
+        System.out.println();
+        
+        while(!s.isEmpty()){
+            System.out.print(s.pop() + "\t");
+        }  
     }
 }
 
 //3_3
 class SetOfStacks{
     Stack[] stacks = new Stack[100];
-    int stackmax = 5;
+    int stackmax = 3;
     int stackindex = 0;
     int i = 0;
     
@@ -48,6 +67,23 @@ class SetOfStacks{
         Object retval = stacks[stackindex].pop();
         i--;
         stackindex = (i-1)/stackmax;
+        return retval;
+    }
+    
+    Object popAt(int index){
+        Object retval = stacks[index].pop();
+        i--;
+        stackindex = (i-1)/stackmax;
+        while(stacks[++index] != null && !stacks[index].isEmpty()){
+            Stack temp = new Stack();
+            while(!stacks[index].isEmpty()){
+                temp.push(stacks[index].pop());
+            }
+            stacks[index-1].push(temp.pop());
+            while(!temp.isEmpty()){
+                stacks[index].push(temp.pop());
+            }
+        }               
         return retval;
     }
     
