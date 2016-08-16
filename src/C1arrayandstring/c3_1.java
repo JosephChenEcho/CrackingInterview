@@ -14,7 +14,8 @@ import java.util.*;
 public class c3_1 {
     public static void main(String[] args){
         //Stack s = new Stack();
-        SetOfStacks s = new SetOfStacks();
+        
+        /*SetOfStacks s = new SetOfStacks();
         s.push(4);
         s.push(3);
         s.push(2);
@@ -44,26 +45,55 @@ public class c3_1 {
         while(!s.isEmpty()){
             System.out.print(s.pop() + "\t");
         }  
+        */
+        
+        //3_4 
+        Stack sa = new Stack();
+        Stack sb = new Stack();
+        Stack sc = new Stack();
+        
+        sa.push(5);
+        sa.push(4);
+        sa.push(3);
+        sa.push(2);
+        sa.push(1);
+        printStack(sa);
+        move(sa,sc,sb);
+        
+    }
+    
+    //3_4
+    public static void move(Stack from, Stack to, Stack temp){
+        printStack(from);
+    }
+    
+    public static void printStack(Stack _stack){
+        Object[] pstack = _stack.toArray();
+        for(Object o : pstack){
+            System.out.println(o);
+        }
+        
     }
 }
 
 //3_3
 class SetOfStacks{
     Stack[] stacks = new Stack[100];
-    int stackmax = 3;
+    int stackmax = 2;
     int stackindex = 0;
     int i = 0;
     
     void push(int item){
+        i++;
+        stackindex = (i-1)/stackmax;
         if(stacks[stackindex] == null){
             stacks[stackindex] = new Stack();
         }        
-        stacks[stackindex].push(item);
-        i++;
-        stackindex = i/stackmax;
+        stacks[stackindex].push(item);        
     }
     
     Object pop(){   
+
         Object retval = stacks[stackindex].pop();
         i--;
         stackindex = (i-1)/stackmax;
