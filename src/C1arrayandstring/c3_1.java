@@ -57,22 +57,28 @@ public class c3_1 {
         sa.push(3);
         sa.push(2);
         sa.push(1);
-        printStack(sa);
         move(sa,sc,sb);
         
     }
     
     //3_4
     public static void move(Stack from, Stack to, Stack temp){
+        System.out.println("From:");
         printStack(from);
+        System.out.println("To:");
+        printStack(to);
+        System.out.println("temp:");
+        printStack(temp);
+        temp.push(from.pop());
+        move(from,temp,to);
     }
     
     public static void printStack(Stack _stack){
         Object[] pstack = _stack.toArray();
         for(Object o : pstack){
-            System.out.println(o);
+            System.out.print(o + "\t");
         }
-        
+        System.out.println();        
     }
 }
 
