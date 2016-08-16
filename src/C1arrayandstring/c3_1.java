@@ -48,29 +48,41 @@ public class c3_1 {
         */
         
         //3_4 
-        Stack sa = new Stack();
-        Stack sb = new Stack();
-        Stack sc = new Stack();
-        
+        Stack<Integer> sa = new Stack<Integer>();
+        Stack<Integer> sb = new Stack<Integer>();
+        Stack<Integer> sc = new Stack<Integer>();
+                 
         sa.push(5);
-        sa.push(4);
-        sa.push(3);
         sa.push(2);
+        sa.push(3);
+        sa.push(4);
         sa.push(1);
-        move(sa,sc,sb);
+        
+        printStack(sa);
+        sb = sort(sa);        
+        printStack(sa);
+        printStack(sb);
+        
+        /*move(sa,sc,sb,sa.size());
+        printStack(sa);
+        printStack(sb);
+        printStack(sc);*/
         
     }
     
     //3_4
-    public static void move(Stack from, Stack to, Stack temp){
+    public static void move(Stack from, Stack to, Stack temp, int n){
+        
+        if (n==0) return;
+        move(from, temp, to, n-1);
+        to.push(from.pop());
         System.out.println("From:");
         printStack(from);
         System.out.println("To:");
         printStack(to);
         System.out.println("temp:");
         printStack(temp);
-        temp.push(from.pop());
-        move(from,temp,to);
+        move(temp,to,from,n-1);        
     }
     
     public static void printStack(Stack _stack){
@@ -79,6 +91,21 @@ public class c3_1 {
             System.out.print(o + "\t");
         }
         System.out.println();        
+    }
+    
+    //3_6
+    public static Stack<Integer> sort(Stack<Integer> s){
+        Stack<Integer> r = new Stack<Integer>();
+        while(!s.isEmpty()){
+            int tmp = s.pop();
+            while(!r.isEmpty() && r.peek() > tmp){
+                s.push(r.pop());
+            }
+            r.push(tmp);
+            printStack(r);
+            printStack(s);
+        }
+        return r;
     }
 }
 
@@ -132,6 +159,35 @@ class SetOfStacks{
     }
 }
 
+//3_5
+
+class MyQueue<T>{
+    Stack<T> s1,s2;
+    public MyQueue(){
+        s1 = new Stack<T>();
+        s2 = new Stack<T>();
+    }
+    
+    public int size(){
+        return s1.size() + s2.size();
+    }
+    
+    public void add(T value){
+        s1.push(value);
+    }
+    
+    public T peek(){
+        if(!s2.empty()) return s2.peek();
+        while (!s1.empty()) s2.push(s1.pop());
+        return s2.peek();
+    }
+    
+    public T remove(){
+        if (!s2.empty()) return s2.pop();
+        while (!s1.empty()) s2.push(s1.pop());
+        return s2.pop();
+    }
+}
 /*
 class Stack{
     Node top;
