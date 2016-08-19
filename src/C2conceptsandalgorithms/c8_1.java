@@ -21,7 +21,7 @@ public class c8_1 {
         }
         */
         
-        int[][] i = new int[4][4];
+        System.out.println(getPath(0,0));
         
         
     }
@@ -36,5 +36,22 @@ public class c8_1 {
     }
     
     //8_2
+    public static int getPath(int x1, int y1){
+        int x2 = 8, y2 = 8; //set destination
+        int returnval = 0;
+        if (x1 + 1 == x2 && y1 == y2){ return 1;}
+        if (y1 + 1 == y2 && x1 == x2){ return 1;}
+        if (x1 + 1 <= x2) {
+            returnval += getPath(x1 + 1,y1);
+        }
+        if (y1 + 1 <= y2) {
+            returnval += getPath(x1,y1 + 1);
+        }
+            
+        return returnval;
+        
+    }
 
 }
+
+
