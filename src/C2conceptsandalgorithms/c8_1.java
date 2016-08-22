@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package C2conceptsandalgorithms;
+import java.lang.Math;
 
 /**
  *
@@ -21,8 +22,9 @@ public class c8_1 {
         }
         */
         
-        System.out.println(getPath(0,0));
-        
+        //System.out.println(getPath(0,0));
+        int[] i = new int[4];
+        placeQueen(i,0);
         
     }
     
@@ -50,6 +52,43 @@ public class c8_1 {
             
         return returnval;
         
+    }
+    
+    
+    //8_8
+    public static void placeQueen(int[] _board, int row){
+        int l = _board.length ;
+        if ( row == l){
+            printBoard(_board);
+            return;
+        }
+        for (int i = 0; i < l; i++){
+            _board[row] = i;
+            if(check(_board,row)){
+                placeQueen(_board, row+1);
+            }
+        }
+    }
+    
+    public static boolean check(int[] _board, int row){
+        for(int i = 0; i < row; i++){
+            int diff = Math.abs(_board[i] - _board[row]);
+            if (diff == 0 || diff == row - i) return false;
+        }
+        return true;
+    }
+
+    
+    public static void printBoard(int[] _board){
+        for(int i : _board){
+            int[] row = new int[_board.length];
+            row[i] = 1;
+            for (int j : row){
+                System.out.print(j + "\t");
+            }
+            System.out.println();
+        }
+        System.out.println("------------------");
     }
 
 }
