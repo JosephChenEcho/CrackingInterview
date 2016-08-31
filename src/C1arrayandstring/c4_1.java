@@ -70,9 +70,6 @@ public class c4_1 {
         return addToTree(array, 0, array.length - 1);
     }
     
-    public static boolean balanceTree(TreeNode tree){
-        return false;
-    }
 }
 
 class TreeNode{
