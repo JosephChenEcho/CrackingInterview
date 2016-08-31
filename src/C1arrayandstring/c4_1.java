@@ -13,6 +13,10 @@ public class c4_1 {
     public static void main(String[] args){
     
     }
+    
+    public static boolean balanceTree(TreeNode tree){
+        return false;
+    }
 }
 
 class TreeNode{
